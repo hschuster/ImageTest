@@ -19,12 +19,22 @@ public class DotDetector {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // https://stackoverflow.com/questions/14058366/opencv-dominoes-circular-spots-disks-detection
-    //
-    public void doDetect(String inputFilePath, String outputFilePath) throws Exception {
+    public void detectAndSaveInFile(String inputFilePath, String outputFilePath) throws Exception {
 
         // Input...
         Mat inpMat = readImageIntoMat(inputFilePath);
+
+        // Process..
+        Mat greyMat = doDetect(inpMat);
+
+        // Output...
+        writeMatToFile(outputFilePath, greyMat);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+    // https://stackoverflow.com/questions/14058366/opencv-dominoes-circular-spots-disks-detection
+    //
+    public Mat doDetect(Mat inpMat) throws Exception {
 
         // Convert to grey scale...
         Mat greyMat = new Mat();
@@ -44,9 +54,7 @@ public class DotDetector {
         // Marking found dots...
         Imgproc.drawContours(greyMat, contours, -1, new Scalar(255,0,0,255), 1);
 
-        // Output...
-        writeMatToFile(outputFilePath, greyMat);
-
+        return greyMat;
     }
 
     // -----------------------------------------------------------------------------------------------------------------
