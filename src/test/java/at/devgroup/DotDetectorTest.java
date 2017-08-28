@@ -12,7 +12,7 @@ public class DotDetectorTest {
     @Test
     public void testDoDetect() throws Exception {
         DotDetector dotDetector = new DotDetector();
-        dotDetector.doDetect();
+        dotDetector.doDetect("src/test/resources/ImageTest.png", "target/ImageTest_GreyScale.png");
     }
     //------------------------------------------------------------------------------------------------------------------
 }
