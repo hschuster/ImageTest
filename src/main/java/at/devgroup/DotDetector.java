@@ -10,7 +10,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class DotDetector {
 
     {
         // todo: Wie im JAR ansprechen? Einfach im selben Ordner zum JAR dazukopieren?
@@ -18,13 +18,9 @@ public class Main {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    public static void main(String[] args) throws Exception {
-        Main main = new Main();
-        main.toTest();
-    }
-
-    // -----------------------------------------------------------------------------------------------------------------
-    private Mat toTest() throws Exception {
+    // https://stackoverflow.com/questions/14058366/opencv-dominoes-circular-spots-disks-detection
+    //
+    public Mat doDetect() throws Exception {
 
         File input = new File("src/test/resources/ImageTest.png");
         BufferedImage image = ImageIO.read(input);
