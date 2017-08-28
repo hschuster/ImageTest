@@ -40,19 +40,29 @@ public class DotDetector {
         Mat greyMat = new Mat();
         Imgproc.cvtColor(inpMat, greyMat, Imgproc.COLOR_RGBA2GRAY);
 
-        //blur...
+        // Blur...
         Imgproc.GaussianBlur(greyMat, greyMat, new Size(9,9), 10);
         Imgproc.threshold(greyMat, greyMat, 80, 150, Imgproc.THRESH_BINARY);
 
-        List<MatOfPoint> contours = new ArrayList<MatOfPoint>();
+        List<MatOfPoint> foundContours = new ArrayList<>();
+        List<MatOfPoint> selectedContours = new ArrayList<>();
 
         // Backup because findContours modifies the image...
         Mat greyCopy = new Mat();
         greyMat.copyTo(greyCopy);
-        Imgproc.findContours(greyCopy, contours, new Mat(), Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_NONE);
+        Imgproc.findContours(greyCopy, foundContours, new Mat(), Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_NONE);
+
+        for(MatOfPoint mop : foundContours) {
+            System.out.println("Found contour: " + mop);
+            // Bild selbst wird auch als Kontur erkannt. Daher filtern.
+            // Willkürlicher Wert. Im Testimage haben alle Dots 16 Rows...
+            if(mop.rows() < 32) {
+                selectedContours.add(mop);
+            }
+        }
 
         // Marking found dots...
-        Imgproc.drawContours(greyMat, contours, -1, new Scalar(255,0,0,255), 1);
+        Imgproc.drawContours(greyMat, selectedContours, -1, new Scalar(255, 255, 255), 2);
 
         return greyMat;
     }
