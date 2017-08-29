@@ -1,11 +1,8 @@
 package at.devgroup;
 
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.imgcodecs.Imgcodecs;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
 
@@ -36,6 +33,7 @@ public abstract class OpenCvPrepper {
     //------------------------------------------------------------------------------------------------------------------
     protected void writeMatToFile(String outputFilePath, Mat grey) throws IOException {
 
+/*
         byte[] data1 = new byte[grey.rows() * grey.cols() * (int)(grey.elemSize())];
         grey.get(0, 0, data1);
         BufferedImage image1 = new BufferedImage(grey.cols(),grey.rows(), BufferedImage.TYPE_BYTE_GRAY);
@@ -43,17 +41,25 @@ public abstract class OpenCvPrepper {
 
         File ouptut = new File(outputFilePath);
         ImageIO.write(image1, "png", ouptut);
+*/
+
+        Imgcodecs.imwrite(outputFilePath, grey);
     }
 
     //------------------------------------------------------------------------------------------------------------------
     protected Mat readImageIntoMat(String inputFilePath) throws IOException {
 
+/*
         File input = new File(inputFilePath);
         BufferedImage image = ImageIO.read(input);
 
         byte[] data = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
         Mat mat = new Mat(image.getHeight(), image.getWidth(), CvType.CV_8UC3);
         mat.put(0, 0, data);
+*/
+
+        Mat mat = Imgcodecs.imread(inputFilePath);
+        System.out.println(mat + "rows " + mat.rows() + " cols " + mat.cols() + " elementsize " + mat.elemSize());
         return mat;
     }
 

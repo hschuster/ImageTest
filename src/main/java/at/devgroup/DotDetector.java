@@ -22,6 +22,7 @@ public class DotDetector extends OpenCvPrepper {
 
         // Output...
         writeMatToFile(outputFilePath, greyMat);
+
     }
 
     //------------------------------------------------------------------------------------------------------------------
