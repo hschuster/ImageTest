@@ -14,16 +14,24 @@ import java.io.IOException;
  */
 public abstract class OpenCvPrepper {
 
+    public static final String LIBS_X64_PATH = "src/main/resources/libs/x64/";
+    public static final String LIBS_X32_PATH = "src/main/resources/libs/x32/";
+
     //------------------------------------------------------------------------------------------------------------------
     // Static initializer...
     {
         // todo: Wie im JAR ansprechen? Einfach im selben Ordner zum JAR dazukopieren?
         String osBit = System.getProperty("sun.arch.data.model");
-        if (osBit.equals("64"))
-            System.load(new File("src/main/resources/libs/x64/opencv_java330.dll").getAbsolutePath());
+        if (osBit.equals("64")) {
+            System.load(new File(LIBS_X64_PATH + "opencv_java330.dll").getAbsolutePath());
+            System.load(new File(LIBS_X64_PATH + "opencv_ffmpeg330_64.dll").getAbsolutePath());
 
-        if (osBit.equals("32"))
-            System.load(new File("src/main/resources/libs/x32/opencv_java330.dll").getAbsolutePath());
+        }
+
+        if (osBit.equals("32")) {
+            System.load(new File(LIBS_X32_PATH + "opencv_java330.dll").getAbsolutePath());
+            System.load(new File(LIBS_X32_PATH + "opencv_ffmpeg330.dll").getAbsolutePath());
+        }
     }
     //------------------------------------------------------------------------------------------------------------------
     protected void writeMatToFile(String outputFilePath, Mat grey) throws IOException {

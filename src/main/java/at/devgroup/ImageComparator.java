@@ -19,6 +19,7 @@ public class ImageComparator extends OpenCvPrepper{
 
         // Output...
         // Marking found dots...
+        // todo: Was tut das? Wie erkennt man Unterschiede? Wie im 2.Bild markieren?
 /*        Mat out = Imgcodecs.imread(inputFile2, Imgcodecs.CV_LOAD_IMAGE_GRAYSCALE);
         Imgproc.drawContours(out, differences, -1, new Scalar(255, 255, 255), 2);
         writeMatToFile(outputFilePath, out);*/
