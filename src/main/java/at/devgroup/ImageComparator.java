@@ -1,5 +1,6 @@
 package at.devgroup;
 
+import org.opencv.core.DMatch;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfDMatch;
 import org.opencv.core.MatOfKeyPoint;
@@ -8,7 +9,7 @@ import org.opencv.features2d.DescriptorMatcher;
 import org.opencv.features2d.FeatureDetector;
 import org.opencv.imgcodecs.Imgcodecs;
 
-public class ImageComparator extends OpenCvPrepper{
+public class    ImageComparator extends OpenCvPrepper{
 
     // -----------------------------------------------------------------------------------------------------------------
     public void detectAndSaveInFile(String inputFile1, String inputFile2, String outputFilePath) throws Exception {
@@ -17,12 +18,13 @@ public class ImageComparator extends OpenCvPrepper{
         MatOfDMatch differences = doCompare(inputFile1, inputFile2);
         System.out.println(differences);
 
-        // Output...
-        // Marking found dots...
-        // todo: Was tut das? Wie erkennt man Unterschiede? Wie im 2.Bild markieren?
-/*        Mat out = Imgcodecs.imread(inputFile2, Imgcodecs.CV_LOAD_IMAGE_GRAYSCALE);
-        Imgproc.drawContours(out, differences, -1, new Scalar(255, 255, 255), 2);
-        writeMatToFile(outputFilePath, out);*/
+        for (DMatch m : differences.toArray()) {
+            // how to use these values to detect the similarity? They seem to be way off
+            // all of these values are in range 50-80 which seems wrong to me
+            System.out.println(m.distance);
+        }
+
+//        boolean imwrite = Imgcodecs.imwrite(outputFilePath, differences);
     }
 
 
