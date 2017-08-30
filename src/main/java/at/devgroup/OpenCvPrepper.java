@@ -12,7 +12,7 @@ import java.io.IOException;
 public abstract class OpenCvPrepper {
 
     public static final String LIBS_X64_PATH = "src/main/resources/libs/x64/";
-    public static final String LIBS_X32_PATH = "src/main/resources/libs/x32/";
+    public static final String LIBS_X32_PATH = "src/main/resources/libs/x86/";
 
     //------------------------------------------------------------------------------------------------------------------
     // Static initializer...
