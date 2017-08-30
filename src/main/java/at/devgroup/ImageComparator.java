@@ -25,6 +25,9 @@ public class ImageComparator extends OpenCvPrepper{
         writeMatToFile(outputFilePath, out);*/
     }
 
+
+    // todo: https://stackoverflow.com/questions/9998195/how-to-find-the-differences-between-frames-using-opencv - Scheint einfacherer Weg zu sein...
+
     // -----------------------------------------------------------------------------------------------------------------
     // https://stackoverflow.com/questions/15572357/compare-the-similarity-of-two-images-with-opencv
     //
