@@ -14,5 +14,11 @@ public class VideoHandlerTest {
         vh.doRead("c:/temp/openCvVideoTest.mov");
     }
     //------------------------------------------------------------------------------------------------------------------
+    @Test
+    public void applyBackgroundSubtraction() throws Exception {
+        VideoHandler vh = new VideoHandler();
+        vh.applyBackgroundSubtraction("c:/temp/openCvVideoTest.mov");
+    }
+    //------------------------------------------------------------------------------------------------------------------
 
 }
